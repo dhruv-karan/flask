@@ -1,5 +1,7 @@
 from flask import Flask, render_template,request
 from wtforms import Form, TextAreaField, validators,IntegerField,StringField,FormField
+import sqlite3
+
 # from vectorizer import predict
 
 app = Flask(__name__)
@@ -55,28 +57,31 @@ def predict(d):
     c = np.array(a)
     c = c.reshape(1,119)
     b =model.predict([c])
+    binary =0
     if b>0.5:
         b= 'long live'
+        binary =1
     else:
         b='short life'
-    return b,model.predict([c])[0][0]*100
+    percent = model.predict([c])[0][0]*100
+    if percent<50:
+        percent = percent*2
+    return b, round(percent,2),binary
+
+
 
     
-
-
-
-
-    
+def sqlite_entry(path, input, feedback,predict_percentage,mortality):
+    conn = sqlite3.connect(path)
+    c = conn.cursor()
+    c.execute('INSERT INTO review'\
+            "(input,feedback,predict_percentage,mortality,date) VALUES "\
+            "(?,?,?,?,DATETIME('now'))",(input,feedback,predict_percentage,mortality))
+    conn.commit()
+    conn.close()
 class HelloForm(Form):
     sayhello = TextAreaField('',[validators.DataRequired()])
-    #country_code = IntegerField('Country Code', [validators.required()])
-    #area_code    = IntegerField('Area Code/Exchange', [validators.required()])
-    #number       = StringField('Number')
-    #first_name   = StringField()
-    #last_name    = StringField()
-    #mobile_phone = FormField(TelephoneForm)
-    #office_phone = FormField(TelephoneForm)
-    
+
 
 
 
@@ -93,14 +98,30 @@ def hello():
     if request.method == 'POST' and form.validate():
         name = request.form['sayhello']
         name = name.strip()
-        name = [int(i) for i in name.strip()]
-        if len(name)!=12:
-        	name = 'Invalid Input'
-        	return render_template('hello.html', name=name)
-        else:
-	        name,percent = predict(name)
-	        return render_template('hello.html', name=name,percent = percent)
+        nam = [int(i) for i in name.strip()]
+        expectancy,percent,binary = predict(nam)
+
+        return render_template('hello.html', expectancy=expectancy,percent = percent,inpu = name,binary=binary)
     return render_template('first_app.html', form=form)
+
+
+@app.route('/thanks', methods=['POST'])
+def feedback():
+    feedback = request.form['feedback_button']
+    review = request.form['review']
+    prediction = request.form['prediction']
+    y = request.form['y_object']
+
+    inv_label = {'Incorrect': 0, 'Correct': 1}
+    feedback = inv_label[feedback]
+
+    # if feedback == 'Incorrect':
+    #     y = int(not(y))
+    # train(review, y)
+    db= 'db.sqlite'
+    sqlite_entry(db, review, feedback,prediction,y)
+    return render_template('thanks.html',feedback=feedback,review=review,prediction=prediction,y=y)
+
 
 
 if __name__ == '__main__':

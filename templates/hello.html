@@ -6,7 +6,24 @@
 filename='style.css') }}">
 </head>
 <body>
-<div>I am {{ percent }} % sure that u r going to have {{ name }}</div>
+<div>I am {{ percent }} % sure that u r going to have {{ expectancy }}</div>
+</br>
+<div id='button'>
 
+<form action="/thanks" method="post">
+<input type=submit value='Correct' name='feedback_button'>
+<input type=submit value='Incorrect' name='feedback_button'>
+<input type=hidden value='{{ percent }}' name='prediction'>
+<input type=hidden value='{{ inpu }}' name='review'>
+<input type=hidden value='{{ binary }}' name='y_object'>
+
+</form>
+</div>
+
+<div id='button'>
+<form action="/">
+<input type=submit value='Submit another review'>
+</form>
+</div>
 </body>
 </html>

@@ -6,22 +6,25 @@ Created on Tue Sep 26 11:06:03 2019
 @author: dhruv
 """
 
-
-import pickle 
-
-     
-def load_model(filename):
-    decision_tree_model_pkl = open(filename, 'rb')
-    decision_tree_model = pickle.load(decision_tree_model_pkl)
-    return decision_tree_model
-
-model = load_model('weight.pkl')
+#import pickle 
 
 
-col_max = [10.0, 16.0, 8.0, 33, 8.0, 5.0, 5.0, 10.0, 2.0, 10.0, 6.0]
+#def load_model(filename):
+#    decision_tree_model_pkl = open(filename, 'rb')
+#    decision_tree_model = pickle.load(decision_tree_model_pkl)
+#    return decision_tree_model
+
+#model = load_model('my_model_weights.h5')
 
 
-check = [(0.0, 9.0),
+from keras.models import load_model
+model = load_model('my_model_weights.h5')
+
+col_max = [3.0,10.0, 16.0, 8.0, 33.0, 8.0, 5.0, 5.0, 10.0, 2.0, 10.0, 6.0]
+
+  
+
+check = [(1.0,3.0),(0.0, 9.0),
  (1.0, 16.0),
  (0.0, 7.0),
  (0.0, 99.0),
@@ -32,10 +35,6 @@ check = [(0.0, 9.0),
  (1.0, 2.0),
  (0.0, 9.0),
  (1.0, 6.0)]
-
-
-
-
 
 
 
@@ -60,7 +59,23 @@ def en(d,col_max,check):
             i+=1
     return new
 
-
+d = [2,8,3,3,4,1,6,7,2,1,3,2]
+import numpy as np
 def predict(d):
     a = en(d,col_max,check)
-    return model.predict([a])
+    a.append(0)
+    a.append(0)
+    a.append(0)
+    c = np.array(a)
+    c = c.reshape(1,119)
+    b =model.predict([c])
+    if b>0.5:
+        b= 'long live'
+    else:
+        b='short life'
+    return b,model.predict([c])[0][0]*100
+
+predict(d)
+    
+
+

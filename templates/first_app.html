@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>First app</title>
-<link rel="stylesheet" href="{{ url_for('static',
-filename='style.css') }}">
+<!-- <link rel="stylesheet" href="{{ url_for('static',
+filename='style.css') }}"> -->
 </head>
 <body>
 {% from "_formhelpers.html" import render_field %}
@@ -14,5 +14,174 @@ filename='style.css') }}">
 </dl>
 <input type=submit value='Say Hello' name='submit_btn'>
 </form>
+<div>Legend </div>
+<div>
+</br>
+	<div>
+		<div><b>social_group_code</b>  </div>
+		<div>SC-1, ST-2, Others-3   </div>
+	</div>
+</br>
+	<div>
+		<div><b>highest_qualification </b> </div>
+		<div> Illiterate-0,</br>
+								Literate Without formal education-1,</br>
+								Literate With formal education-Below primary-2,</br>
+								Literate With formal education-Primary-3,</br>
+								Literate With formal education-Middle-4,</br>
+								Literate With formal education-Secondary/Matric (Class-X)-5,</br>
+								Literate With formal education-Hr. Secondary/Sr. Secondary/Pre-university(Class XII)-6,</br>
+								Literate With formal education - Graduate/ B.Tech/ B.B.A/ MBBS/ Equivalent-7,</br>
+								Literate With formal education-Post Grad/ M.Tech/ M.B.A/ MD/ Equivalent or higher-8, </br>
+								Literate With formal education-Non-technical/ Technical diploma or certificate not equivalent to a degree-9
+								 </div>
+	</div>
+</br>
+<div><b>occupation_status</b></div>
+<div>
+Cultivator-1,</br>
+							Agricultural Wage labourer-2,</br>
+							Non- Agricultural Wage labourer.-3,</br>
+							Self-Employed(excluding cultivators)Own Account Workers-4,</br>
+							Self-Employed(excluding cultivators)-Employers-5,</br>
+							Self-Employed(excluding cultivators)-Un-paid family labourer-6,</br>
+							Regular salaried/wage employees-7,</br>
+							Did not work but was seeking and/or available for work -8,</br>
+							Attended educational Institution-9,</br>
+							Attending routine domestic chores, etc.-10,</br>
+							Beggars-11,</br>
+							Prostitutes/Sex Workers-12,</br>
+							Rentiers, Pensioners, Other remittance recipients. -13,</br>
+							Not able to work due to disability-14,</br>
+							Too old to work-15,</br>
+							Others-16         
+</div>
+</br>
+<div><b>disability_status</b></div>
+<div>
+ Mental-1,</br>
+						Visual-2,</br>
+						Hearing-3,</br>
+						Speech-4,</br>
+						Locomotor-5,</br>
+						Multiple-6,</br>
+						No Disability-0 </br>
+</div>
+</br>
+<div><b>diagnosed_for</b></div>
+<div>Not diagnosed-0 ,</br>
+	Diabetes-1,</br>
+	Hypertension-2,</br>
+	Chronic heart disease/failure-3,</br>
+	Myocardial infarction/heart attack-4,</br>
+	Stroke/Cerebrovascular accident-5,</br>Epilepsy-6,</br>
+	Asthma/chronic respiratory failure-7,</br>
+	Goitre/ Thyroid disorder-8,</br>
+	Tuberculosis-9,</br>
+	Leprosy-10,</br>
+	Cancer-Respiratory system-11,</br>
+	Cancer-Gastro-intestinal system-12,</br>
+	Cancer-Genitourinary system-13,</br>
+	Cancer-Breast-14,</br>
+	Renal stone-15,</br>
+	Chronic renal failure-16,</br>
+	Gall stone /cholecystitis -17,</br>
+	Chronic  liver failure -18,</br>
+	Rheumatoid arthritis /  osteoarthritis-19,</br>
+	Chronic  skin  diseases – psoriasis -20,</br>
+
+	Others (Hernia, hydrocele , peptic ulcer etc)-21,</br>
+	 Glaucoma-22,</br>
+	 Tonsilitis-23,</br>
+	  Flourosis-24,</br>
+	   Pyorrhea-25, </br>
+	  Rheumatic fever/Rheumatic heart disease-26, </br>
+	  Tumour(any type)-27,</br>
+	   Blood cancer/leukemia-28,</br>
+	    Skin Cancer-29,</br>
+	     Piles/Anal fissure,Anal fistula-30,</br>
+	      Anaemia-30, </br>
+	      Others(Hernia,Hydrocele,Peptic Ulcer etc)-99
+</div>
+</br>
+
+<div><b>chew</b></div>
+<div>Pan with tobacco-1,</br>
+			Pan without tobacco-2,</br>
+			Gutka/Pan masala with tobacco-3,</br>
+			Gutka/Pan masala without tobacco -4,</br>
+			Tobacco only-5,</br>
+			Ex – Chewer -6,</br>
+			Never chewed-7,</br>
+			Not known-0    </div>
+</br>
+<div><b>smoke</b></div>
+<div>Usual smoker-1,</br>Occasional smoker-2,</br>Ex – Smoker-3,</br>Never smoked-4,</br>Not known-0    </div>
+</br>
+<div><b>alcohol</b></div>
+<div>
+  Usual drinker-1,</br>
+		Occasional drinker-2,</br>
+		Ex – drinker-3,</br>
+		Never drank-4,</br>
+		Not known-0 </div>
+</br>
+<div><b>toilet_used</b></div>
+<div> Flush/Pour flush latrine connected:-To piped sewer system-1,</br>
+				To septic tank-2,</br>
+				To pit latrine-3,</br>
+				To somewhere else-4,</br>
+				Pit latrine(without flush/ pour flush):-Ventilated Improved Pit (VIP)-5,</br>
+				Pit latrine with slab-6,</br>
+				Open pit /Pit latrine without slab-7,</br>
+				service latrine-8,</br></br>
+				community toilet-9,</br>
+				open defecation(field, brush,jungle etc.)-0</div>
+</br>
+<div><b>household_have_electricity</b></div>
+<div>    Yes-1,</br>
+No-2</div>
+</br>
+<div><b>cooking_fuel</b></div>
+<div>Firewood-1,</br>
+				Crop Residue -2,</br>
+				Cow dung cake -3,</br>
+				Coal/lignite/Charcoal-4,</br>
+				Kerosene-5,</br>
+				LPG/PNG -6,</br>
+				Electricity-7,</br>
+				Biogas-8,</br>
+				Any other-9,</br>
+				No cooking-0   </div>
+
+</br>
+<div><b>land_possessed</b></div>
+<div>Less than 0.02-1,</br>
+				0.02 to less than 1.00-2,</br>
+				1.00 to less than 4.00-3,</br>
+				4.00 to less than 10.00-4,</br>
+				10.00 or more-5,</br>
+				No land-6</div>
+</div>
 </body>
 </html>
+
+
+
+          
+     
+
+
+               
+
+        
+
+        
+
+
+  
+
+
+  
+
+ 
